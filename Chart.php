@@ -38,8 +38,9 @@ class Chart
 
     public function addData($label, $value, $params = array())
     {
+
         $this->_total += $value;
-        $data = new ChartData($label,$value);
+        $data = new ChartData($label,$value,$params);
         if ($data->getOption('colorIndex') == null) {
             $data->setOption('colorindex', count($this->_datas));
         }
