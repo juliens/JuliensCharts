@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project name="Charts" default="phar">
+    <taskdef name="atoum" classpath="./" classname="AtoumTask"/>
+
+    <!-- ============================================  -->
+    <!-- Target: preparebuild                          -->
+    <!-- ============================================  -->
+    <target name="preparebuild">
+        <mkdir dir="../build"/>
+    </target>
+
+    <!-- ============================================  -->
+    <!-- Target: Test                                  -->
+    <!-- ============================================  -->
+    <target name="test">
+        <atoum
+                atoumpharpath="../tests/atoum/mageekguy.atoum.phar"
+                phppath="/usr/bin/php"
+                codecoverage="false"
+                codecoveragereportpath="../coverage/"
+                showcodecoverage="true"
+                showmissingcodecoverage="true"
+                showprogress="true"
+                showmemory="true"
+                showduration="true"
+                >
+            <fileset dir="../tests">
+                <include name="**/*.php"/>
+            </fileset>
+
+        </atoum>
+    </target>
+    
+
+    <target name="phar" depends="preparebuild">
+        <pharpackage
+                destfile="../build/charts.phar"
+                basedir="../"
+                compression="bzip2"
+                >
+            <fileset dir="../">
+                <include name="**/**"/>
+            </fileset>
+            <metadata>
+                <element name="version" value="0.1"/>
+                <element name="Julien SALLEYRON"/>
+                <element name="e-mail" value="julien.salleyron@gmail.com"/>
+            </metadata>
+        </pharpackage>
+    </target>
+</project>

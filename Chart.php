@@ -39,7 +39,11 @@ class Chart
     public function addData($label, $value, $params = array())
     {
         $this->_total += $value;
-        $this->_datas[] = new ChartData($label,$value);
+        $data = new ChartData($label,$value);
+        if ($data->getOption('colorIndex') == null) {
+            $data->setOption('colorindex', count($this->_datas));
+        }
+        $this->_datas[] = $data;
     }
 
     private function _calculatePolygons()

@@ -6,13 +6,13 @@ namespace tests\units\Charts;
 require_once __DIR__.'/../ChartData.php';
 
 //Inclusion de Atoum dans toutes les classes de tests
-require_once __DIR__.'/atoum/mageekguy.atoum.phar';
+require_once __DIR__ . '/atoum/mageekguy.atoum.phar';
 
 use \mageekguy\atoum;
 
 
 /**
- * Test de la classe \BasicTypes
+ * Test de la classe Chart
  */
 class ChartData extends atoum\test
 {
@@ -21,8 +21,9 @@ class ChartData extends atoum\test
         $label = 'test1';
         $value= 10;
         $color = 'test';
-        $options = array ();
-        $chart = new \Charts\ChartData($label,$value,$color,$options);
+        $optionValue = 'truc';
+        $options = array ('value'=>$optionValue);
+        $chart = new \Charts\ChartData($label,$value,$options);
         $this->assert
                 ->string($chart->label)
                 ->isEqualTo($label);
@@ -30,6 +31,15 @@ class ChartData extends atoum\test
         $this->assert
                 ->integer($chart->value)
                 ->isEqualTo($value);
+        $this->assert
+                ->string($chart->getOption('value'))
+                ->isEqualTo($optionValue);
+        $this->assert
+                ->variable($chart->getOption('null_value'))
+                ->isNull();
+        $this->assert
+                ->string($chart->getOption('default_value', 'default'))
+                ->isEqualTo('default');
     }
 
 
