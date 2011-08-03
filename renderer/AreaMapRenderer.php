@@ -17,10 +17,9 @@ class AreaMapRenderer implements IChartRenderer
         foreach ($pDatas as $data) {
             $ar = iterator_to_array(new \RecursiveIteratorIterator(new \RecursiveArrayIterator($data->polygons)), false);
             $polygone_str = implode(',', $ar);
-            $href = isset ($data->params['href']) ? $data->params['href'] : '#';
             $html .= <<<EOT
                 <AREA SHAPE="poly"
-                 HREF="$href" title="{$data->label} ({$data->value})"
+                 HREF="{$data->getOption('href', '#')}" title="{$data->label} ({$data->value})"
                     COORDS="$polygone_str">
 EOT;
         }

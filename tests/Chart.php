@@ -18,13 +18,11 @@ class Chart extends atoum\test
 {
     public function testRenderer () {
         $chart = new \Charts\Chart();
-        $chart->addData('test1',5);
-        $chart->addData('test2',5);
+        $chart->addData('test1',5, array ('test'=>'1'));
+        $chart->addData('test2',5, array ('test'=>'1'));
         $this->assert->exception (function () use ($chart) {
                     $chart->render();
           })->isInstanceOf('\Exception');
-
-
 
     }
 }
