@@ -1,0 +1,2 @@
+
+__HALT_COMPILER();

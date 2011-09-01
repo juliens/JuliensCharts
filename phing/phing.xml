@@ -38,6 +38,7 @@
                 destfile="../build/charts.phar"
                 basedir="../"
                 compression="bzip2"
+	  stub="Stub.php"
                 >
             <fileset dir="../">
                 <include name="**/**"/>

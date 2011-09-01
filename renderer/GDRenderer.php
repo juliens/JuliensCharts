@@ -29,7 +29,7 @@ class GDRenderer implements IChartRenderer
 
     public function render($pDatas)
     {
-        $im = @imagecreatetruecolor(300, 300);
+        $im = @imagecreatetruecolor(300, 220);
         imageantialias($im, true);
         imagefilledrectangle($im, 0, 0, 300, 300, imagecolorallocate($im, 255, 255, 255));
 
@@ -45,7 +45,7 @@ class GDRenderer implements IChartRenderer
             }
             $polygon = iterator_to_array(new \RecursiveIteratorIterator(new \RecursiveArrayIterator($data->polygons)), false);
             imagefilledpolygon($im, $polygon, count($polygon) / 2, $gd_palette[$data->getOption('colorindex')]);
-            $black = imagecolorallocate($im, 0, 0, 0);
+            $black = imagecolorallocate($im, 255, 255, 255);
             imagepolygon($im, $polygon, count($polygon) / 2, $black);
             imagestring($im, '3', $data->center['x'], $data->center['y'], $data->value, $black);
         }
